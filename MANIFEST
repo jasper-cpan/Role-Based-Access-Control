@@ -1,9 +1,11 @@
+Build.PL
+Changes
+lib/AccessControl/RBAC.pm
+lib/AccessControl/RBAC/User.pm
+LICENSE
+Makefile.PL
 MANIFEST
 README
-LICENSE
+t/001-load.t
+t/002-User.t
 Todo
-Changes
-Build.PL
-Makefile.PL
-lib/AccessControl/RBAC.pm
-t/001_load.t

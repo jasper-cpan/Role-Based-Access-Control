@@ -1,0 +1,34 @@
+{
+   "abstract" : "Framework for Role Based Access Control",
+   "author" : [
+      "unknown"
+   ],
+   "dynamic_config" : 0,
+   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.112621",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "AccessControl-RBAC",
+   "prereqs" : {},
+   "provides" : {
+      "AccessControl::RBAC" : {
+         "file" : "lib/AccessControl/RBAC.pm",
+         "version" : "0.01"
+      },
+      "AccessControl::RBAC::User" : {
+         "file" : "lib/AccessControl/RBAC/User.pm",
+         "version" : 0
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ]
+   },
+   "version" : "0.01"
+}
