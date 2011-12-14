@@ -5,9 +5,9 @@ use AccessControl::RBAC::UserTest;
 use AccessControl::RBAC::Role;
 #use AccessControl::RBAC::Persistence::Cache;
 use AccessControl::RBAC::Resource;
-#use AccessControl::RBAC::Operation;
-#use AccessControl::RBAC::Permission;
-#use AccessControl::RBAC::RolePermission;
+use AccessControl::RBAC::Operation;
+use AccessControl::RBAC::Permission;
+use AccessControl::RBAC::RolePermission;
 
 #print "user test physical name: ", AccessControl::RBAC::UserTest->physical_name(),"\n";
 
@@ -59,69 +59,74 @@ my $res1 = AccessControl::RBAC::Resource->new(
 
 $res1->persist();
 
-#
-#my $opr_read = AccessControl::RBAC::Operation->new(
-#                operation_name => 'read',
-#            );
-#
-#$opr_read->persist();
-#
-#
-#my $opr_write = AccessControl::RBAC::Operation->new(
-#                operation_name => 'write',
-#            );
-#
-#
-#$opr_write->persist();
-#
-#
-#my $perm1 = AccessControl::RBAC::Permission->new(
-#                permission_name => 'permission01',
-#                resource_id => $res1->resource_id,
-#                operation_id => $opr_read->operation_id,
-#            );
-#
-#
-#$perm1->persist();
-#
-#my $perm2 = AccessControl::RBAC::Permission->new(
-#                permission_name => 'permission02',
-#                resource_id => $res1->resource_id,
-#                operation_id => $opr_write->operation_id,
-#            );
-#
-#
-#$perm2->persist();
-#
-#
-#my $role_perm1 = AccessControl::RBAC::RolePermission->new(
-#                    role_id => $role1->role_id,
-#                    permission_id => $perm1->permission_id,
-#                 );
-#
-#
-#$role_perm1->persist();
-#
-#
-#my $role_perm2 = AccessControl::RBAC::RolePermission->new(
-#                    role_id => $role2->role_id,
-#                    permission_id => $perm2->permission_id,
-#                 );
-#
-#$role_perm2->persist();
-#
-#
-#
+
+my $opr_read = AccessControl::RBAC::Operation->new(
+                operation_name => 'read',
+            );
+
+$opr_read->persist();
+
+
+my $opr_write = AccessControl::RBAC::Operation->new(
+                operation_name => 'write',
+            );
+
+
+$opr_write->persist();
+
+
+my $perm1 = AccessControl::RBAC::Permission->new(
+                permission_name => 'permission01',
+                resource_id => $res1->resource_id,
+                operation_id => $opr_read->operation_id,
+            );
+
+
+$perm1->persist();
+
+my $perm2 = AccessControl::RBAC::Permission->new(
+                permission_name => 'permission02',
+                resource_id => $res1->resource_id,
+                operation_id => $opr_write->operation_id,
+            );
+
+
+$perm2->persist();
+
+
+my $role_perm1 = AccessControl::RBAC::RolePermission->new(
+                    role_id => $role1->role_id,
+                    permission_id => $perm1->permission_id,
+                 );
+
+
+$role_perm1->persist();
+
+
+my $role_perm2 = AccessControl::RBAC::RolePermission->new(
+                    role_id => $role2->role_id,
+                    permission_id => $perm2->permission_id,
+                 );
+
+$role_perm2->persist();
+
+
+
 #
 my $p = AccessControl::RBAC::PersistenceFactory->instance->current_provider();
-#
-#my $u = $p->find('AccessControl::RBAC::User','11');
-#
-#print Dumper($u);
-#
+
+my $u = $p->find('user','3');
+
+print Dumper($u);
+
 my @users = $p->lookup('user', { login_name => qr/^User/i });
 
 print Dumper(\@users);
+
+
+my $u3 = $p->new_persistable_object('user', login_name=> 'haha',password=> 'dada');
+$u3->persist();
+
 #
 #
 #
