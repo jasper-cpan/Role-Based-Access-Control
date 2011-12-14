@@ -152,12 +152,18 @@ sub persistable_attribute_values
     return $data;
 }
 
+sub current_provider
+{
+    my $self = shift;
+    my $factory = AccessControl::RBAC::PersistenceFactory->instance->current_provider();
+}
+
 sub persist
 {
     my $self = shift;
 
     my $factory = AccessControl::RBAC::PersistenceFactory->instance;
-    return $factory->current_provider->persist($self);
+    return $self->current_provider->persist($self);
 
 }
 

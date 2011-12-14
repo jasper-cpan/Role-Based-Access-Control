@@ -5,7 +5,11 @@ use namespace::autoclean;
 
 use AccessControl::RBAC::Meta::Attribute::Trait::PersistableAttr;
 
-extends "AccessControl::RBAC::PersistableObject";
+with "AccessControl::RBAC::Persistence::Role::Persistable";
+
+__PACKAGE__->register_name('operation');
+__PACKAGE__->primary_key('operation_id');
+
 
 __PACKAGE__->register_name('operation');
 
@@ -13,7 +17,6 @@ has 'operation_id' => (
     traits => [qw/PersistableAttr/],
     is      => 'rw',
     isa     => 'Str|Int',
-    is_primary_key => 1,
     predicate => 'has_operation_id',
 
 );

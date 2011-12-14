@@ -5,15 +5,16 @@ use namespace::autoclean;
 
 use AccessControl::RBAC::Meta::Attribute::Trait::PersistableAttr;
 
-extends "AccessControl::RBAC::PersistableObject";
+
+with "AccessControl::RBAC::Persistence::Role::Persistable";
 
 __PACKAGE__->register_name('permission');
+__PACKAGE__->primary_key('permission_id');
 
 has 'permission_id' => (
     traits => [qw/PersistableAttr/],
     is      => 'rw',
     isa     => 'Str|Int',
-    is_primary_key => 1,
     predicate => 'has_permission_id',
 
 );
