@@ -10,8 +10,8 @@ has 'config' => (
     #TODO: Fix me
     default => sub {
         {
-            #class => 'AccessControl::RBAC::Persistence::Provider::FileBased::YAML',
-            class => 'AccessControl::RBAC::Persistence::Provider::FileBased::XML',
+            class => 'AccessControl::RBAC::Persistence::Provider::FileBased::YAML',
+            #class => 'AccessControl::RBAC::Persistence::Provider::FileBased::XML',
             init_args => {
             },
         }
