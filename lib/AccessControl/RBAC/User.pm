@@ -41,7 +41,8 @@ has 'dummy' => (
 sub assign_role
 {
     my ($self,$role) = @_;
-    my $user_role = $self->current_provider->new_persistable_object('user_role',user_id => $self->user_id, role_id => $role->role_id);
+    my $user_role =
+        $self->current_provider->new_persistable_object('user_role',user_id => $self->user_id, role_id => $role->role_id);
     $user_role->persist;
     return $user_role;
 }
