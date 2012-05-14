@@ -8,6 +8,12 @@ use Amethyst::RBAC::DB::Role;
 
 extends 'AccessControl::RBAC::Object::Rose';
 
+class_has 'adaptee_class' => (
+    is => 'ro',
+    isa => 'Str',
+    default => 'Please override in your subclass',
+);
+
 sub build_adaptee
 {
     my $class = shift;

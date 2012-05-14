@@ -7,6 +7,7 @@ use namespace::autoclean;
 
 has 'adaptee' => (
     is      => 'rw',
+    isa     => 'Rose::DB::Object',
 );
 
 
