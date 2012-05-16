@@ -7,9 +7,7 @@ use AccessControl::RBAC::ObjectManager;
 
 extends 'AccessControl::RBAC::Object::Rose::Role';
 
-use Amethyst::RBAC::DB::Role;
-has '+adaptee' => (isa     => 'Amethyst::RBAC::DB::Role');
-
+has '+adaptee' => (isa     => 'AccessControl::RBAC::DB::Rose::Informix::Role');
 
 __PACKAGE__->meta->make_immutable;
 

@@ -5,8 +5,7 @@ use namespace::autoclean;
 
 extends 'AccessControl::RBAC::Object::Rose::User';
 
-use Amethyst::RBAC::DB::User;
-has '+adaptee' => (isa     => 'Amethyst::RBAC::DB::User');
+has '+adaptee' => (isa     => 'AccessControl::RBAC::DB::Rose::Informix::User');
 
 __PACKAGE__->meta->make_immutable;
 
