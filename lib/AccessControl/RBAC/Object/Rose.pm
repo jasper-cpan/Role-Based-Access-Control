@@ -1,15 +1,12 @@
 package AccessControl::RBAC::Object::Rose;
 
-
 use Moose;
-use MooseX::ClassAttribute;
 use namespace::autoclean;
 
 has 'adaptee' => (
     is      => 'rw',
-    isa     => 'Rose::DB::Object',
+    isa     => 'Object',
 );
-
 
 around BUILDARGS => sub {
     my $orig = shift;
@@ -29,12 +26,25 @@ around BUILDARGS => sub {
     return $class->$orig(%args);
 };
 
-
-
 sub build_adaptee
 {
     my $class = shift;
-    die "The $class->build_adaptee is not implemented";
+
+    my $attr = $class->meta->get_attribute('adaptee');
+    die "Attribute 'adaptee' is not defined." unless($attr);
+    my $adaptee_class = $attr->type_constraint;
+    die "The type constraint is not defined for attribute 'adaptee' of $class." unless($adaptee_class);
+    # Get adaptee class name
+    $adaptee_class = $adaptee_class->name;
+
+    # Assumming the $adaptee_class is already loaded
+    unless(eval "require $adaptee_class") {
+        die "Can't load class $adaptee_class\n$@";
+    }
+
+    my $adaptee = $adaptee_class->new(@_);
+
+    return $adaptee;
 }
 
 __PACKAGE__->meta->make_immutable;
